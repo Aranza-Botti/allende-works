@@ -60,8 +60,26 @@ const Cotizar = () => {
       return;
     }
     setLoading(true);
-    // TODO: Save to Supabase leads table
-    await new Promise((r) => setTimeout(r, 1000));
+    const { error } = await supabase.from("leads").insert({
+      nombre: form.nombre,
+      telefono: form.telefono,
+      whatsapp: form.whatsapp || null,
+      email: form.email || null,
+      ciudad: form.ciudad || null,
+      vehiculo_tipo: form.vehiculo_tipo || null,
+      marca: form.marca || null,
+      modelo: form.modelo || null,
+      anio: form.anio || null,
+      servicio: form.servicio,
+      mensaje: form.mensaje || null,
+      preferred_contact_method: form.contacto_preferido,
+      source: "website",
+    });
+    if (error) {
+      toast({ title: "Error", description: "No se pudo enviar. Intenta por WhatsApp.", variant: "destructive" });
+      setLoading(false);
+      return;
+    }
     setLoading(false);
     setSubmitted(true);
     toast({ title: "¡Cotización enviada!", description: "Nos pondremos en contacto contigo pronto." });
