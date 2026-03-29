@@ -10,6 +10,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Phone, CheckCircle, Send } from "lucide-react";
 import { whatsappLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Phone, CheckCircle, Send } from "lucide-react";
+import { whatsappLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { useToast } from "@/hooks/use-toast";
 
 const vehicleTypes = ["Pickup", "SUV", "Camioneta de trabajo", "Sedán", "Van", "Otro"];
 const serviceTypes = [
