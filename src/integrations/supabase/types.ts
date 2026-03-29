@@ -14,16 +14,275 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          anio: string | null
+          ciudad: string | null
+          created_at: string
+          email: string | null
+          id: string
+          marca: string | null
+          mensaje: string | null
+          modelo: string | null
+          nombre: string
+          notes: string | null
+          preferred_contact_method: string | null
+          servicio: string
+          source: string | null
+          status: string
+          telefono: string
+          updated_at: string
+          vehiculo_tipo: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          anio?: string | null
+          ciudad?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          marca?: string | null
+          mensaje?: string | null
+          modelo?: string | null
+          nombre: string
+          notes?: string | null
+          preferred_contact_method?: string | null
+          servicio: string
+          source?: string | null
+          status?: string
+          telefono: string
+          updated_at?: string
+          vehiculo_tipo?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          anio?: string | null
+          ciudad?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          marca?: string | null
+          mensaje?: string | null
+          modelo?: string | null
+          nombre?: string
+          notes?: string | null
+          preferred_contact_method?: string | null
+          servicio?: string
+          source?: string | null
+          status?: string
+          telefono?: string
+          updated_at?: string
+          vehiculo_tipo?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          featured: boolean | null
+          id: string
+          images: string[] | null
+          published: boolean | null
+          slug: string | null
+          title: string
+          updated_at: string
+          vehicle_type: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          images?: string[] | null
+          published?: boolean | null
+          slug?: string | null
+          title: string
+          updated_at?: string
+          vehicle_type?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          images?: string[] | null
+          published?: boolean | null
+          slug?: string | null
+          title?: string
+          updated_at?: string
+          vehicle_type?: string | null
+        }
+        Relationships: []
+      }
+      quote_requests: {
+        Row: {
+          admin_notes: string | null
+          attachment_urls: string[] | null
+          budget_range: string | null
+          created_at: string
+          id: string
+          lead_id: string | null
+          quote_status: string | null
+          request_type: string | null
+          urgency: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          attachment_urls?: string[] | null
+          budget_range?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          quote_status?: string | null
+          request_type?: string | null
+          urgency?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          attachment_urls?: string[] | null
+          budget_range?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          quote_status?: string | null
+          request_type?: string | null
+          urgency?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quote_requests_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          created_at: string
+          featured: boolean | null
+          icon: string | null
+          id: string
+          long_description: string | null
+          published: boolean | null
+          short_description: string | null
+          slug: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          featured?: boolean | null
+          icon?: string | null
+          id?: string
+          long_description?: string | null
+          published?: boolean | null
+          short_description?: string | null
+          slug?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          featured?: boolean | null
+          icon?: string | null
+          id?: string
+          long_description?: string | null
+          published?: boolean | null
+          short_description?: string | null
+          slug?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      settings: {
+        Row: {
+          id: string
+          key: string
+          value: string | null
+        }
+        Insert: {
+          id?: string
+          key: string
+          value?: string | null
+        }
+        Update: {
+          id?: string
+          key?: string
+          value?: string | null
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          client_name: string
+          created_at: string
+          featured: boolean | null
+          id: string
+          published: boolean | null
+          rating: number
+          testimonial: string
+        }
+        Insert: {
+          client_name: string
+          created_at?: string
+          featured?: boolean | null
+          id?: string
+          published?: boolean | null
+          rating?: number
+          testimonial: string
+        }
+        Update: {
+          client_name?: string
+          created_at?: string
+          featured?: boolean | null
+          id?: string
+          published?: boolean | null
+          rating?: number
+          testimonial?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "editor"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +409,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "editor"],
+    },
   },
 } as const
