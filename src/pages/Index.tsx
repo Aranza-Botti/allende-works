@@ -89,13 +89,13 @@ const Index = () => (
               viewport={{ once: true }}
               custom={i}
               variants={fadeUp}
-              className="bg-gradient-card rounded-lg border border-border p-6 hover:border-glow transition-colors group"
+              className="bg-gradient-card rounded-lg border border-border p-6 hover:border-glow transition-colors group text-left"
             >
-              <div className="flex items-center gap-3 mb-3">
+              <div className="gap-3 mb-3 text-center flex items-center justify-start">
                 <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors">
                   <v.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground">{v.title}</h3>
+                <h3 className="font-display text-lg font-semibold text-foreground text-center">{v.title}</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
             </motion.div>
