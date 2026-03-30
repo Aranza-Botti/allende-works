@@ -41,7 +41,16 @@ const Index = () => (
     {/* Hero */}
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-hero">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Soldadura de tirón de arrastre en taller" className="w-full h-full object-cover opacity-40" width={1920} height={1080} />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={heroImg}
+          className="w-full h-full object-cover opacity-30"
+        >
+          <source src="/welding-bg.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
       </div>
       <div className="container relative z-10 py-20 md:py-32">
