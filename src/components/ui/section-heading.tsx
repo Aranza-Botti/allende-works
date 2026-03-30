@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface SectionHeadingProps {
   tag?: string;
@@ -9,7 +10,13 @@ interface SectionHeadingProps {
 }
 
 const SectionHeading = ({ tag, title, description, className, align = "center" }: SectionHeadingProps) => (
-  <div className={cn("mb-10 md:mb-14", align === "center" && "text-center", className)}>
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    className={cn("mb-10 md:mb-14", align === "center" && "text-center", className)}
+  >
     {tag && (
       <span className="inline-block font-display text-xs uppercase tracking-[0.2em] text-primary mb-3">
         {tag}
@@ -23,7 +30,7 @@ const SectionHeading = ({ tag, title, description, className, align = "center" }
         {description}
       </p>
     )}
-  </div>
+  </motion.div>
 );
 
 export default SectionHeading;
