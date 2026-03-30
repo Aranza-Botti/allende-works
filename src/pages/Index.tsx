@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone, ArrowRight, Shield, Wrench, Clock, Star, CheckCircle, ChevronRight, MessageCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { Phone, ArrowRight, Shield, Wrench, Clock, Star, CheckCircle, ChevronRight, MessageCircle, Zap, Users } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/section-heading";
+import AnimatedCounter from "@/components/home/AnimatedCounter";
+import StickyMobileCTA from "@/components/home/StickyMobileCTA";
 import { whatsappLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import heroImg from "@/assets/hero-welding.jpg";
 import projectHitch from "@/assets/project-hitch-1.jpg";
@@ -12,7 +15,12 @@ import projectBall from "@/assets/project-ball-mount.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5 } }),
+  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }),
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: (i: number) => ({ opacity: 1, scale: 1, transition: { delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }),
 };
 
 const values = [
@@ -31,178 +39,281 @@ const services = [
 ];
 
 const testimonials = [
-  { name: "Carlos M.", rating: 5, text: "Excelente trabajo en mi Silverado. El tirón quedó perfecto y la instalación fue rápida. Muy recomendado." },
-  { name: "Roberto G.", rating: 5, text: "Mandé fabricar una base especial para mi remolque y quedó de primera. Precio justo y buen trato." },
-  { name: "María L.", rating: 5, text: "Me explicaron todo el proceso desde el inicio. Se nota la experiencia y la calidad del trabajo." },
+  { name: "Carlos M.", rating: 5, text: "Excelente trabajo en mi Silverado. El tirón quedó perfecto y la instalación fue rápida. Muy recomendado.", vehicle: "Chevrolet Silverado" },
+  { name: "Roberto G.", rating: 5, text: "Mandé fabricar una base especial para mi remolque y quedó de primera. Precio justo y buen trato.", vehicle: "Ford F-150" },
+  { name: "María L.", rating: 5, text: "Me explicaron todo el proceso desde el inicio. Se nota la experiencia y la calidad del trabajo.", vehicle: "Toyota Hilux" },
 ];
 
-const Index = () => (
-  <Layout>
-    {/* Hero */}
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-hero">
-      <div className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={heroImg}
-          className="w-full h-full object-cover opacity-30"
+const Index = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  return (
+    <Layout>
+      <StickyMobileCTA />
+
+      {/* Hero with parallax */}
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-hero">
+        <motion.div style={{ y: heroY }} className="absolute inset-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroImg}
+            className="w-full h-full object-cover opacity-25"
+          >
+            <source src="/welding-bg.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        </motion.div>
+
+        {/* Decorative glow orb */}
+        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px] animate-glow-pulse pointer-events-none" />
+
+        <motion.div style={{ opacity: heroOpacity }} className="container relative z-10 py-20 md:py-32">
+          <motion.div initial="hidden" animate="visible" className="max-w-2xl">
+            <motion.span variants={fadeUp} custom={0} className="inline-block font-display text-xs uppercase tracking-[0.3em] text-primary mb-4">
+              Allende, Nuevo León
+            </motion.span>
+            <motion.h1 variants={fadeUp} custom={1} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
+              Tirones de arrastre<br />
+              <span className="shimmer-text">a tu medida</span>
+            </motion.h1>
+            <motion.p variants={fadeUp} custom={2} className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
+              Fabricación, instalación y soldadura de alta calidad. Soluciones personalizadas para cada vehículo con la confianza de un taller especializado.
+            </motion.p>
+            <motion.div variants={fadeUp} custom={3} className="mt-8 flex flex-col sm:flex-row gap-4">
+              <a href={whatsappLink(WHATSAPP_MESSAGES.general)} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-gradient-accent font-display tracking-wider text-base w-full sm:w-auto urgency-pulse relative overflow-hidden group">
+                  <Phone className="w-5 h-5 mr-2" /> Cotizar por WhatsApp
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+                </Button>
+              </a>
+              <Link to="/cotizar">
+                <Button size="lg" variant="outline" className="font-display tracking-wider text-base border-border text-foreground hover:bg-secondary hover:border-primary/30 w-full sm:w-auto transition-all duration-300">
+                  Solicitar cotización <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* Trust indicators — neuromarketing social proof */}
+            <motion.div variants={fadeUp} custom={4} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-primary" /> Trabajo garantizado</span>
+              <span className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-primary" /> +10 años experiencia</span>
+              <span className="flex items-center gap-2"><Users className="w-4 h-4 text-primary" /> +500 clientes satisfechos</span>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
-          <source src="/welding-bg.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-      </div>
-      <div className="container relative z-10 py-20 md:py-32">
-        <motion.div initial="hidden" animate="visible" className="max-w-2xl">
-          <motion.span variants={fadeUp} custom={0} className="inline-block font-display text-xs uppercase tracking-[0.3em] text-primary mb-4">
-            Allende, Nuevo León
-          </motion.span>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
-            Tirones de arrastre<br />
-            <span className="text-gradient">a tu medida</span>
-          </motion.h1>
-          <motion.p variants={fadeUp} custom={2} className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
-            Fabricación, instalación y soldadura de alta calidad. Soluciones personalizadas para cada vehículo con la confianza de un taller especializado.
-          </motion.p>
-          <motion.div variants={fadeUp} custom={3} className="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href={whatsappLink(WHATSAPP_MESSAGES.general)} target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-gradient-accent font-display tracking-wider text-base w-full sm:w-auto">
-                <Phone className="w-5 h-5 mr-2" /> Cotizar por WhatsApp
-              </Button>
-            </a>
-            <Link to="/cotizar">
-              <Button size="lg" variant="outline" className="font-display tracking-wider text-base border-border text-foreground hover:bg-secondary w-full sm:w-auto">
-                Solicitar cotización <ArrowRight className="w-5 h-5 ml-2" />
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-1.5"
+          >
+            <div className="w-1 h-2 rounded-full bg-primary" />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Social proof counters — neuromarketing authority */}
+      <section className="py-12 md:py-16 border-b border-border relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background to-graphite" />
+        <div className="container relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <AnimatedCounter end={500} suffix="+" label="Clientes atendidos" />
+          <AnimatedCounter end={10} suffix="+" label="Años de experiencia" />
+          <AnimatedCounter end={1200} suffix="+" label="Proyectos completados" />
+          <AnimatedCounter end={98} suffix="%" label="Clientes satisfechos" />
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-16 md:py-24 bg-graphite">
+        <div className="container">
+          <SectionHeading tag="¿Por qué elegirnos?" title="Calidad que se nota en cada detalle" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {values.map((v, i) => (
+              <motion.div
+                key={v.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                custom={i}
+                variants={scaleIn}
+                className="bg-gradient-card rounded-lg border border-border p-6 hover:border-glow transition-all group text-left hover-lift cursor-default"
+              >
+                <div className="gap-3 mb-3 text-center flex items-center justify-start">
+                  <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                    <v.icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-foreground text-center">{v.title}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        {/* Background decorative element */}
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-primary/3 blur-[150px] pointer-events-none" />
+
+        <div className="container relative z-10">
+          <SectionHeading tag="Nuestros servicios" title="Soluciones especializadas" description="Desde la fabricación del tirón hasta la instalación completa. Todo en un solo taller." />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {services.map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                custom={i}
+                variants={fadeUp}
+                className="group rounded-lg overflow-hidden bg-gradient-card border border-border hover:border-glow transition-all shadow-card hover-lift"
+              >
+                <div className="aspect-[4/3] overflow-hidden relative">
+                  <img src={s.img} alt={s.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-2">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{s.desc}</p>
+                  <Link to="/servicios" className="inline-flex items-center text-sm text-primary font-medium line-reveal pb-1 gap-1 group-hover:gap-2 transition-all">
+                    Ver más <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-center mt-10"
+          >
+            <Link to="/servicios">
+              <Button variant="outline" className="font-display tracking-wider border-border text-foreground hover:bg-secondary hover:border-primary/30 transition-all duration-300">
+                Ver todos los servicios <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </motion.div>
-          <motion.div variants={fadeUp} custom={4} className="mt-8 flex items-center gap-6 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-primary" /> Trabajo garantizado</span>
-            <span className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-primary" /> +10 años experiencia</span>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    {/* Values */}
-    <section className="py-16 md:py-24 bg-graphite">
-      <div className="container">
-        <SectionHeading tag="¿Por qué elegirnos?" title="Calidad que se nota en cada detalle" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {values.map((v, i) => (
-            <motion.div
-              key={v.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={i}
-              variants={fadeUp}
-              className="bg-gradient-card rounded-lg border border-border p-6 hover:border-glow transition-colors group text-left"
-            >
-              <div className="gap-3 mb-3 text-center flex items-center justify-start">
-                <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors">
-                  <v.icon className="w-6 h-6 text-primary" />
+      {/* Testimonials */}
+      <section className="py-16 md:py-24 bg-graphite relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/3 blur-[150px] pointer-events-none" />
+
+        <div className="container relative z-10">
+          <SectionHeading tag="Testimonios" title="Lo que dicen nuestros clientes" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                custom={i}
+                variants={scaleIn}
+                className="bg-gradient-card rounded-lg border border-border p-6 hover-lift relative group"
+              >
+                {/* Quote mark decoration */}
+                <span className="absolute top-4 right-5 font-display text-6xl text-primary/10 leading-none select-none group-hover:text-primary/20 transition-colors">"</span>
+
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-primary text-primary" />
+                  ))}
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground text-center">{v.title}</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
-            </motion.div>
-          ))}
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 relative z-10">"{t.text}"</p>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                    <span className="font-display text-xs font-bold text-primary">{t.name[0]}</span>
+                  </div>
+                  <div>
+                    <span className="font-display text-sm font-semibold text-foreground block">{t.name}</span>
+                    <span className="text-xs text-muted-foreground">{t.vehicle}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* Services */}
-    <section className="py-16 md:py-24">
-      <div className="container">
-        <SectionHeading tag="Nuestros servicios" title="Soluciones especializadas" description="Desde la fabricación del tirón hasta la instalación completa. Todo en un solo taller." />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={i}
-              variants={fadeUp}
-              className="group rounded-lg overflow-hidden bg-gradient-card border border-border hover:border-glow transition-all shadow-card"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={s.img} alt={s.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">{s.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{s.desc}</p>
-                <Link to="/servicios" className="inline-flex items-center text-sm text-primary font-medium hover:gap-2 transition-all gap-1">
-                  Ver más <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        <div className="text-center mt-10">
-          <Link to="/servicios">
-            <Button variant="outline" className="font-display tracking-wider border-border text-foreground hover:bg-secondary">
-              Ver todos los servicios <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </section>
+      {/* CTA with urgency — neuromarketing scarcity */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-accent opacity-5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
 
-    {/* Testimonials */}
-    <section className="py-16 md:py-24 bg-graphite">
-      <div className="container">
-        <SectionHeading tag="Testimonios" title="Lo que dicen nuestros clientes" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={i}
-              variants={fadeUp}
-              className="bg-gradient-card rounded-lg border border-border p-6"
-            >
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">"{t.text}"</p>
-              <span className="font-display text-sm font-semibold text-foreground">{t.name}</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* CTA */}
-    <section className="py-16 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-accent opacity-10" />
-      <div className="container relative z-10 text-center">
-        <SectionHeading
-          tag="¿Listo para empezar?"
-          title="Solicita tu cotización hoy"
-          description="Cuéntanos qué necesitas y te damos una cotización sin compromiso. Respuesta rápida por WhatsApp o formulario."
+        {/* Animated decorative sparks */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary/5 pointer-events-none"
         />
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a href={whatsappLink(WHATSAPP_MESSAGES.quote)} target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-gradient-accent font-display tracking-wider text-base w-full sm:w-auto">
-              <Phone className="w-5 h-5 mr-2" /> Cotizar por WhatsApp
-            </Button>
-          </a>
-          <Link to="/cotizar">
-            <Button size="lg" variant="outline" className="font-display tracking-wider text-base border-border text-foreground hover:bg-secondary w-full sm:w-auto">
-              Formulario de cotización <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-          </Link>
+
+        <div className="container relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-display uppercase tracking-widest text-primary mb-6">
+              <Zap className="w-3 h-3" /> Respuesta en menos de 2 horas
+            </span>
+          </motion.div>
+          <SectionHeading
+            tag="¿Listo para empezar?"
+            title="Solicita tu cotización hoy"
+            description="Cuéntanos qué necesitas y te damos una cotización sin compromiso. Respuesta rápida por WhatsApp o formulario."
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-col sm:flex-row justify-center gap-4"
+          >
+            <a href={whatsappLink(WHATSAPP_MESSAGES.quote)} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-gradient-accent font-display tracking-wider text-base w-full sm:w-auto urgency-pulse relative overflow-hidden group">
+                <Phone className="w-5 h-5 mr-2" /> Cotizar por WhatsApp
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+              </Button>
+            </a>
+            <Link to="/cotizar">
+              <Button size="lg" variant="outline" className="font-display tracking-wider text-base border-border text-foreground hover:bg-secondary hover:border-primary/30 w-full sm:w-auto transition-all duration-300">
+                Formulario de cotización <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="mt-6 text-xs text-muted-foreground"
+          >
+            Sin compromiso · Sin costo · Respuesta garantizada
+          </motion.p>
         </div>
-      </div>
-    </section>
-  </Layout>
-);
+      </section>
+    </Layout>
+  );
+};
 
 export default Index;
