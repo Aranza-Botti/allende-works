@@ -91,10 +91,12 @@ const Index = () => (
               variants={fadeUp}
               className="bg-gradient-card rounded-lg border border-border p-6 hover:border-glow transition-colors group"
             >
-              <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                <v.icon className="w-6 h-6 text-primary" />
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors">
+                  <v.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-display text-lg font-semibold text-foreground">{v.title}</h3>
               </div>
-              <h3 className="font-display text-lg font-semibold text-foreground mb-2">{v.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
             </motion.div>
           ))}
