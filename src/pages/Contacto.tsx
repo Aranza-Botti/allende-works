@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Phone, MapPin, Clock, Mail, Send, MessageCircle } from "lucide-react";
-import { whatsappLink, WHATSAPP_MESSAGES, PHONE_NUMBER, BUSINESS_ADDRESS, BUSINESS_HOURS } from "@/lib/constants";
+import { whatsappLink, WHATSAPP_MESSAGES, PHONE_NUMBER, BUSINESS_ADDRESS, BUSINESS_HOURS, GOOGLE_MAPS_URL, WAZE_URL } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
