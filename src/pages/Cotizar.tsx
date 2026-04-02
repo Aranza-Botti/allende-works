@@ -15,6 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 const vehicleTypes = ["Pickup", "SUV", "Camioneta de trabajo", "Sedán", "Van", "Otro"];
 const serviceTypes = [
   "Tirón de arrastre personalizado",
+  "Fabricación de remolque",
   "Instalación de tirón",
   "Fabricación metálica",
   "Soldadura / reparación",
