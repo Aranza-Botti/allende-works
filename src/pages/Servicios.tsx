@@ -2,7 +2,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Wrench, Shield, Cog, Hammer, Link2, Settings, ArrowRight, Phone } from "lucide-react";
+import { Wrench, Shield, Cog, Hammer, Link2, Settings, ArrowRight, Phone, Truck } from "lucide-react";
 import { motion } from "framer-motion";
 import { whatsappLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 
@@ -15,44 +15,58 @@ const services = [
   {
     icon: Wrench,
     title: "Tirones de arrastre personalizados",
-    desc: "Fabricamos tirones a medida para cualquier tipo de vehículo: pickups, SUVs, camionetas de trabajo y vehículos comerciales. Cada pieza se diseña considerando el peso, la estructura y el uso específico.",
+    desc: "Fabricamos tirones a medida para cualquier tipo de vehículo: pickups, SUVs, camionetas de trabajo y vehículos comerciales.",
     benefits: ["Ajuste perfecto a tu vehículo", "Materiales de alta resistencia", "Capacidad de carga certificada"],
-    ideal: "Ideal para quienes necesitan remolcar trailers, remolques o equipo pesado de forma segura.",
+    ideal: "Ideal para quienes necesitan remolcar trailers, remolques o equipo pesado.",
+    wa: WHATSAPP_MESSAGES.general,
+  },
+  {
+    icon: Truck,
+    title: "Fabricación de remolques",
+    desc: "Diseñamos y fabricamos remolques personalizados para carga general, vehículos, motos, lanchas y más. Estructura reforzada y acabados profesionales.",
+    benefits: ["Remolques para cualquier uso", "Estructura reforzada", "Diseño personalizado"],
+    ideal: "Para negocios, ranchos, transporte de vehículos o equipo pesado.",
+    wa: WHATSAPP_MESSAGES.trailers,
   },
   {
     icon: Settings,
     title: "Instalación de tirones",
-    desc: "Servicio profesional de instalación con equipo especializado. Montamos el tirón en tu vehículo asegurándonos de que quede firme, alineado y listo para trabajar.",
+    desc: "Servicio profesional de instalación con equipo especializado. Montamos el tirón asegurándonos de que quede firme y alineado.",
     benefits: ["Instalación el mismo día", "Alineación precisa", "Prueba de resistencia incluida"],
-    ideal: "Para quienes ya tienen su tirón o compran uno con nosotros y necesitan montaje profesional.",
+    ideal: "Para quienes ya tienen su tirón o compran uno con nosotros.",
+    wa: WHATSAPP_MESSAGES.installation,
   },
   {
     icon: Hammer,
     title: "Fabricación metálica a medida",
-    desc: "Diseñamos y fabricamos piezas metálicas personalizadas: estructuras, soportes, bases, marcos y cualquier pieza que necesites en acero o hierro.",
+    desc: "Diseñamos y fabricamos piezas metálicas personalizadas: estructuras, soportes, bases, marcos y cualquier pieza en acero o hierro.",
     benefits: ["Diseño según especificaciones", "Corte y soldadura de precisión", "Acabados de calidad"],
     ideal: "Negocios, talleres, constructoras o particulares que requieren piezas únicas.",
+    wa: WHATSAPP_MESSAGES.fabrication,
   },
   {
     icon: Shield,
     title: "Soldadura especializada",
-    desc: "Servicio de soldadura MIG y TIG para reparaciones, refuerzos estructurales y uniones de alta resistencia. Trabajamos con diversos calibres y materiales.",
+    desc: "Servicio de soldadura MIG y TIG para reparaciones, refuerzos estructurales y uniones de alta resistencia.",
     benefits: ["Soldadura MIG y TIG", "Reparación de estructuras", "Refuerzos y adaptaciones"],
     ideal: "Vehículos, maquinaria, estructuras metálicas que necesitan reparación o refuerzo.",
+    wa: WHATSAPP_MESSAGES.welding,
   },
   {
     icon: Link2,
     title: "Accesorios de arrastre",
-    desc: "Bolas de arrastre, conectores eléctricos, extensiones, cadenas de seguridad y todo lo que complementa tu sistema de remolque.",
+    desc: "Bolas de arrastre, conectores eléctricos, extensiones, cadenas de seguridad y todo para tu sistema de remolque.",
     benefits: ["Variedad de medidas", "Compatibilidad garantizada", "Instalación incluida"],
-    ideal: "Complementa tu tirón con los accesorios correctos para un sistema de remolque completo.",
+    ideal: "Complementa tu tirón con los accesorios correctos para un sistema completo.",
+    wa: WHATSAPP_MESSAGES.accessories,
   },
   {
     icon: Cog,
     title: "Adaptaciones para vehículos",
-    desc: "Modificaciones y adaptaciones metálicas para vehículos especiales: defensas, portabicicletas, racks de carga, soportes para placa y más.",
+    desc: "Modificaciones y adaptaciones metálicas: defensas, portabicicletas, racks de carga, soportes para placa y más.",
     benefits: ["Personalización total", "Funcionalidad y estética", "Resistencia comprobada"],
-    ideal: "Dueños de vehículos que buscan personalizar o agregar funcionalidad a su unidad.",
+    ideal: "Dueños de vehículos que buscan personalizar o agregar funcionalidad.",
+    wa: WHATSAPP_MESSAGES.adaptations,
   },
 ];
 
@@ -63,7 +77,7 @@ const Servicios = () => (
         <SectionHeading
           tag="Nuestros servicios"
           title="Todo lo que necesitas en un solo taller"
-          description="Desde la fabricación del tirón hasta la instalación completa. Atención personalizada y calidad garantizada en cada proyecto."
+          description="Desde la fabricación del tirón hasta remolques completos. Atención personalizada y calidad garantizada."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((s, i) => (
@@ -90,7 +104,7 @@ const Servicios = () => (
                 ))}
               </ul>
               <p className="text-xs text-steel-light italic mb-5">{s.ideal}</p>
-              <a href={whatsappLink(WHATSAPP_MESSAGES.general)} target="_blank" rel="noopener noreferrer">
+              <a href={whatsappLink(s.wa)} target="_blank" rel="noopener noreferrer">
                 <Button size="sm" className="bg-gradient-accent font-display tracking-wider">
                   <Phone className="w-4 h-4 mr-1" /> Cotizar
                 </Button>

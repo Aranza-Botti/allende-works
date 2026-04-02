@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Download } from "lucide-react";
+import { Search, Download, MessageCircle, Phone } from "lucide-react";
+import { whatsappLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 
 const statusColors: Record<string, string> = {
   new: "bg-green-500/10 text-green-400 border-green-500/20",
@@ -39,6 +40,11 @@ interface Lead {
   status: string;
   notes: string | null;
 }
+
+const getDaysSince = (dateStr: string) => {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  return Math.floor(diff / (1000 * 60 * 60 * 24));
+};
 
 const AdminLeads = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -84,6 +90,15 @@ const AdminLeads = () => {
     a.href = url;
     a.download = "leads.csv";
     a.click();
+  };
+
+  const getFollowUpLink = (lead: Lead) => {
+    const days = getDaysSince(lead.created_at);
+    const phone = lead.whatsapp || lead.telefono;
+    const cleanPhone = phone.replace(/\D/g, "");
+    const fullPhone = cleanPhone.startsWith("52") ? cleanPhone : `52${cleanPhone}`;
+    const message = (WHATSAPP_MESSAGES.followUp as (name: string, days: number) => string)(lead.nombre, days);
+    return `https://wa.me/${fullPhone}?text=${encodeURIComponent(message)}`;
   };
 
   return (
@@ -146,13 +161,16 @@ const AdminLeads = () => {
                     </td>
                     <td className="p-4 text-muted-foreground text-xs">
                       {new Date(lead.created_at).toLocaleDateString("es-MX")}
+                      <div className="text-[10px] text-muted-foreground/60">hace {getDaysSince(lead.created_at)} días</div>
                     </td>
                     <td className="p-4">
-                      {lead.whatsapp && (
-                        <a href={`https://wa.me/${lead.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                          <Button size="sm" variant="outline" className="text-xs border-border">WhatsApp</Button>
+                      <div className="flex gap-2">
+                        <a href={getFollowUpLink(lead)} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" className="text-xs bg-[#25D366] hover:bg-[#20bd5a] text-white">
+                            <MessageCircle className="w-3.5 h-3.5 mr-1" /> Seguimiento
+                          </Button>
                         </a>
-                      )}
+                      </div>
                     </td>
                   </tr>
                 ))}
