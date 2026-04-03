@@ -57,13 +57,14 @@ const Index = () => {
       <StickyMobileCTA />
 
       {/* Hero */}
-      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-hero">
-        <motion.div style={{ y: heroY }} className="absolute inset-0">
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-hero pb-32">
+        <motion.div style={{ y: heroY }} className="absolute inset-0 -bottom-40">
           <video autoPlay muted loop playsInline poster={heroImg} className="w-full h-full object-cover opacity-20">
             <source src="/welding-bg.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-background/30" />
+          <div className="absolute bottom-0 left-0 right-0 h-60 bg-gradient-to-t from-background via-background/80 to-transparent" />
         </motion.div>
 
         <motion.div style={{ opacity: heroOpacity }} className="container relative z-10 py-20 md:py-32">
@@ -106,8 +107,8 @@ const Index = () => {
       <BrandLogos />
 
       {/* Counters */}
-      <section className="py-12 md:py-16 border-b border-border relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background to-graphite" />
+      <section className="py-12 md:py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-graphite" />
         <div className="container relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8">
           <AnimatedCounter end={500} suffix="+" label="Clientes atendidos" />
           <AnimatedCounter end={10} suffix="+" label="Años de experiencia" />

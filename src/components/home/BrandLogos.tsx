@@ -7,7 +7,7 @@ const brands = [
 ];
 
 const BrandLogos = () => (
-  <section className="py-8 md:py-10 border-y border-border/30 bg-background/30 relative overflow-hidden">
+  <section className="py-8 md:py-10 bg-transparent relative overflow-hidden -mt-16 z-10">
     <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-10 pointer-events-none" />
     <p className="text-center text-[10px] font-display uppercase tracking-[0.3em] text-muted-foreground/50 mb-6 relative z-20">
       Trabajamos con las marcas más populares
