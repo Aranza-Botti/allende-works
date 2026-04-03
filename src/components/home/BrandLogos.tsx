@@ -7,12 +7,12 @@ const brands = [
 ];
 
 const BrandLogos = () => (
-  <section className="relative -mt-24 z-10 overflow-hidden pt-24 pb-12 md:pt-28 md:pb-14">
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/25 to-background/55" />
-    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-transparent to-background/20 pointer-events-none" />
-    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-background/40 pointer-events-none" />
-    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background via-background/70 to-transparent z-10 pointer-events-none" />
-    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background via-background/70 to-transparent z-10 pointer-events-none" />
+  <section className="relative -mt-32 z-10 overflow-hidden pt-32 pb-12 md:pt-36 md:pb-14">
+    <div className="absolute inset-0 bg-transparent pointer-events-none" />
+    <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-transparent to-transparent pointer-events-none" />
+    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background/30 pointer-events-none" />
+    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background/40 to-transparent z-10 pointer-events-none" />
+    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background/40 to-transparent z-10 pointer-events-none" />
 
     <div className="relative z-20">
       <p className="text-center text-[10px] font-display uppercase tracking-[0.3em] text-muted-foreground/45 mb-6">
