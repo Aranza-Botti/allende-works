@@ -73,7 +73,7 @@ const Index = () => {
             </motion.span>
             <motion.h1 variants={fadeUp} custom={1} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
               Tirones de arrastre<br />
-              <span className="shimmer-text">a tu medida</span>
+              <span className="text-primary">a tu medida</span>
             </motion.h1>
             <motion.p variants={fadeUp} custom={2} className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
               Fabricación, instalación, remolques y soldadura de alta calidad. Soluciones personalizadas para cada vehículo.
