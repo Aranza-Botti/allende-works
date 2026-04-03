@@ -40,7 +40,7 @@ const GoogleMapSection = () => (
             <h3 className="font-display text-base font-semibold text-foreground mb-2">Carr. Nacional 513</h3>
             <p className="text-sm text-muted-foreground leading-relaxed mb-1">Valle de Los Naranjos</p>
             <p className="text-sm text-muted-foreground">67350 Cdad. de Allende, N.L.</p>
-            <p className="text-xs text-primary mt-3 font-medium">Abierto 24 horas</p>
+            <p className="text-xs text-primary mt-3 font-medium">atención con previa cita</p>
           </div>
 
           <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer">
