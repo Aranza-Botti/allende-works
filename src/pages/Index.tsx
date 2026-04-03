@@ -69,7 +69,7 @@ const Index = () => {
         <motion.div style={{ opacity: heroOpacity }} className="container relative z-10 py-20 md:py-32">
           <motion.div initial="hidden" animate="visible" className="max-w-2xl">
             <motion.span variants={fadeUp} custom={0} className="inline-block font-display text-xs uppercase tracking-[0.3em] text-primary mb-4">
-              Allende, Nuevo León · Abierto 24 hrs
+              ALLENDE, NUEVO LEÓN
             </motion.span>
             <motion.h1 variants={fadeUp} custom={1} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
               Tirones de arrastre<br />
