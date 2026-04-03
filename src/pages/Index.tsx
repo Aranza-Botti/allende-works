@@ -57,15 +57,15 @@ const Index = () => {
       <StickyMobileCTA />
 
       {/* Hero */}
-      <section ref={heroRef} className="relative min-h-[90vh] flex items-center bg-gradient-hero pb-32">
-        <motion.div style={{ y: heroY }} className="absolute inset-0 overflow-hidden" style-fix="true">
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center bg-gradient-hero mb-[-120px] z-[1]">
+        <motion.div style={{ y: heroY }} className="absolute inset-0 overflow-hidden">
           <video autoPlay muted loop playsInline poster={heroImg} className="w-full h-[130%] object-cover opacity-20">
             <source src="/welding-bg.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-background/30" />
         </motion.div>
-        <div className="absolute -bottom-40 left-0 right-0 h-80 bg-gradient-to-t from-background via-background/90 to-transparent z-[1] pointer-events-none" />
+        <div className="absolute -bottom-20 left-0 right-0 h-60 bg-gradient-to-t from-background via-background/80 to-transparent z-[2] pointer-events-none" />
 
         <motion.div style={{ opacity: heroOpacity }} className="container relative z-10 py-20 md:py-32">
           <motion.div initial="hidden" animate="visible" className="max-w-2xl">
