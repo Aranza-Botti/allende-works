@@ -94,7 +94,7 @@ const Index = () => {
 
             <motion.div variants={fadeUp} custom={4} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
               <span className="flex items-center gap-2"><Star className="w-4 h-4 fill-primary text-primary" /> 5.0 en Google</span>
-              <span className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-primary" /> Abierto 24 hrs</span>
+              <span className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-primary" /> +10 años de experiencia</span>
               <span className="flex items-center gap-2"><Users className="w-4 h-4 text-primary" /> +1,200 seguidores</span>
             </motion.div>
           </motion.div>
