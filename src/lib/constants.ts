@@ -1,7 +1,7 @@
 export const WHATSAPP_NUMBER = "528261157586";
 export const PHONE_NUMBER = "+52 826 115 7586";
 export const BUSINESS_NAME = "Tirones Allende";
-export const BUSINESS_ADDRESS = "Carr. Nacional 513, Valle de Los Naranjos, 67350 Cdad. de Allende, N.L., México";
+export const BUSINESS_ADDRESS = "Carr. Nacional 513, Valle de Los Naranjos, 67350, Allende, N.L.";
 export const BUSINESS_HOURS = "Abierto 24 horas";
 export const FACEBOOK_URL = "https://www.facebook.com/tirones.allende";
 export const INSTAGRAM_URL = "https://www.instagram.com/tirones.allende";
