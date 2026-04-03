@@ -107,8 +107,8 @@ const Index = () => {
       <BrandLogos />
 
       {/* Counters */}
-      <section className="py-12 md:py-16 border-b border-border relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background to-graphite" />
+      <section className="py-12 md:py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-graphite" />
         <div className="container relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8">
           <AnimatedCounter end={500} suffix="+" label="Clientes atendidos" />
           <AnimatedCounter end={10} suffix="+" label="Años de experiencia" />
