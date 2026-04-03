@@ -72,7 +72,7 @@ const Index = () => {
               ALLENDE, NUEVO LEÓN
             </motion.span>
             <motion.h1 variants={fadeUp} custom={1} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
-              Tirones de arrastre<br />
+              Tirones de Arrastre<br />
               <span className="text-primary font-semibold opacity-95">a tu medida</span>
             </motion.h1>
             <motion.p variants={fadeUp} custom={2} className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
