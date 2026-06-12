@@ -60,7 +60,7 @@ const Index = () => {
       {/* Hero */}
       <section ref={heroRef} className="relative min-h-[90vh] flex items-center bg-gradient-hero mb-[-160px] z-[1]">
         <motion.div style={{ y: heroY }} className="absolute inset-0 overflow-hidden">
-          <video autoPlay muted loop playsInline poster={heroImg} className="w-full h-[140%] object-cover opacity-20">
+          <video autoPlay muted loop playsInline poster={heroImg.url} className="w-full h-[140%] object-cover opacity-20">
             <source src="/welding-bg.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
