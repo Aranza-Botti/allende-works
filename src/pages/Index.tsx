@@ -10,10 +10,10 @@ import StickyMobileCTA from "@/components/home/StickyMobileCTA";
 import BrandLogos from "@/components/home/BrandLogos";
 import GoogleMapSection from "@/components/home/GoogleMapSection";
 import { whatsappLink, WHATSAPP_MESSAGES } from "@/lib/constants";
-import heroImg from "@/assets/hero-welding.jpg";
-import projectHitch from "@/assets/project-hitch-1.jpg";
-import projectFab from "@/assets/project-fabrication.jpg";
-import projectBall from "@/assets/project-ball-mount.jpg";
+import heroImg from "@/assets/real-work/image-10.png.asset.json";
+import projectHitch from "@/assets/real-work/image.png.asset.json";
+import projectFab from "@/assets/real-work/image-2.png.asset.json";
+import projectBall from "@/assets/real-work/image-3.png.asset.json";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -28,17 +28,18 @@ const scaleIn = {
 const values = [
   { icon: Wrench, title: "Hecho a la medida", desc: "Cada tirón se fabrica según las dimensiones exactas de tu vehículo." },
   { icon: Shield, title: "Instalación profesional", desc: "Montaje seguro con acabados de primera calidad." },
-  { icon: Clock, title: "Abiertos 24 horas", desc: "Disponibilidad total para atender tus necesidades." },
-  { icon: Star, title: "Calidad en soldadura", desc: "Soldadura MIG/TIG de alta resistencia con materiales certificados." },
+  { icon: Clock, title: "Atención con cita", desc: "Te atendemos mejor agendando previamente para darte servicio más rápido." },
+  { icon: Star, title: "Calidad en soldadura", desc: "Soldadura y fabricación pensadas para uso real y larga duración." },
   { icon: MessageCircle, title: "Cotización personalizada", desc: "Te explicamos cada detalle antes de empezar el trabajo." },
   { icon: CheckCircle, title: "5.0 ★ en Google", desc: "Calificación perfecta respaldada por clientes reales." },
 ];
 
 const services = [
-  { title: "Tirones de arrastre", desc: "Fabricación personalizada para pickups, SUVs y camionetas de trabajo.", img: projectHitch, wa: WHATSAPP_MESSAGES.general },
-  { title: "Remolques a medida", desc: "Diseño y fabricación de remolques personalizados para cualquier necesidad.", img: projectFab, wa: WHATSAPP_MESSAGES.trailers },
-  { title: "Fabricación metálica", desc: "Estructuras, soportes, bases y piezas metálicas a medida.", img: projectBall, wa: WHATSAPP_MESSAGES.fabrication },
+  { title: "Tirones de arrastre", desc: "Fabricación personalizada para pickups, SUVs y camionetas de trabajo.", img: projectHitch.url, wa: WHATSAPP_MESSAGES.general },
+  { title: "Remolques a medida", desc: "Diseño y fabricación de soluciones reforzadas para trabajo y arrastre.", img: projectFab.url, wa: WHATSAPP_MESSAGES.trailers },
+  { title: "Fabricación metálica", desc: "Instalación y fabricación metálica a medida con trabajos reales de taller.", img: projectBall.url, wa: WHATSAPP_MESSAGES.fabrication },
 ];
+
 
 const testimonials = [
   { name: "Carlos M.", rating: 5, text: "Excelente trabajo en mi Silverado. El tirón quedó perfecto y la instalación fue rápida. Muy recomendado.", vehicle: "Chevrolet Silverado" },
