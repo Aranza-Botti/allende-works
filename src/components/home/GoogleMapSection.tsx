@@ -1,6 +1,6 @@
-import { MapPin, Navigation, ExternalLink } from "lucide-react";
+import { MapPin, Navigation, ExternalLink, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BUSINESS_ADDRESS, GOOGLE_MAPS_URL, WAZE_URL } from "@/lib/constants";
+import { BUSINESS_ADDRESS, GOOGLE_MAPS_EMBED, GOOGLE_MAPS_URL, PHONE_NUMBER, WAZE_URL } from "@/lib/constants";
 import { motion } from "framer-motion";
 
 const GoogleMapSection = () => (
@@ -20,7 +20,7 @@ const GoogleMapSection = () => (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 rounded-lg overflow-hidden border border-border shadow-card h-80 md:h-96">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14386.5!2d-100.02!3d25.29!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866ecb0f30c9c8a1%3A0x7bfae3da3f77df0!2sAllende%2C+N.L.!5e0!3m2!1ses!2smx!4v1"
+            src={GOOGLE_MAPS_EMBED}
             width="100%"
             height="100%"
             style={{ border: 0 }}
@@ -37,10 +37,15 @@ const GoogleMapSection = () => (
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
               <MapPin className="w-5 h-5 text-primary" />
             </div>
-            <h3 className="font-display text-base font-semibold text-foreground mb-2">Carr. Nacional 513</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-1">Valle de Los Naranjos</p>
-            <p className="text-sm text-muted-foreground">67350 Cdad. de Allende, N.L.</p>
-            <p className="text-xs text-primary mt-3 font-medium">atención con previa cita</p>
+            <h3 className="font-display text-base font-semibold text-foreground mb-2">Tirones Allende</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">Carr Nacional 513</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">Valle de Los Naranjos, 67350</p>
+            <p className="text-sm text-muted-foreground">Cdad. de Allende, N.L., México</p>
+            <div className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> {PHONE_NUMBER}</p>
+              <p className="text-primary font-medium">5.0 ★ en Google · 16 reseñas</p>
+              <p className="text-xs">Atención con previa cita</p>
+            </div>
           </div>
 
           <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer">
@@ -60,3 +65,4 @@ const GoogleMapSection = () => (
 );
 
 export default GoogleMapSection;
+

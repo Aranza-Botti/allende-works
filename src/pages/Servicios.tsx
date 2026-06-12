@@ -1,10 +1,16 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { Wrench, Shield, Cog, Hammer, Link2, Settings, ArrowRight, Phone, Truck } from "lucide-react";
+import { Wrench, Shield, Cog, Hammer, Link2, Settings, Phone, Truck } from "lucide-react";
 import { motion } from "framer-motion";
 import { whatsappLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import serviceHitch from "@/assets/real-work/image-10.png.asset.json";
+import serviceFabrication from "@/assets/real-work/image-2.png.asset.json";
+import serviceInstallation from "@/assets/real-work/image-3.png.asset.json";
+import serviceMaterials from "@/assets/real-work/image-4.png.asset.json";
+import serviceReceiver from "@/assets/real-work/image-5.png.asset.json";
+import serviceAttention from "@/assets/real-work/image-6.png.asset.json";
+import serviceQuality from "@/assets/real-work/image-7.png.asset.json";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -15,58 +21,65 @@ const services = [
   {
     icon: Wrench,
     title: "Tirones de arrastre personalizados",
-    desc: "Fabricamos tirones a medida para cualquier tipo de vehículo: pickups, SUVs, camionetas de trabajo y vehículos comerciales.",
-    benefits: ["Ajuste perfecto a tu vehículo", "Materiales de alta resistencia", "Capacidad de carga certificada"],
-    ideal: "Ideal para quienes necesitan remolcar trailers, remolques o equipo pesado.",
+    desc: "Fabricamos tirones a medida para pickups, SUVs, sedanes y camionetas de trabajo con ajuste limpio y resistente.",
+    benefits: ["Ajuste perfecto a tu vehículo", "Fabricado a la medida", "Acabado profesional"],
+    ideal: "Ideal para quienes necesitan remolcar con seguridad sin improvisaciones.",
     wa: WHATSAPP_MESSAGES.general,
+    img: serviceHitch.url,
   },
   {
     icon: Truck,
     title: "Fabricación de remolques",
-    desc: "Diseñamos y fabricamos remolques personalizados para carga general, vehículos, motos, lanchas y más. Estructura reforzada y acabados profesionales.",
-    benefits: ["Remolques para cualquier uso", "Estructura reforzada", "Diseño personalizado"],
-    ideal: "Para negocios, ranchos, transporte de vehículos o equipo pesado.",
+    desc: "Desarrollamos soluciones reforzadas para remolque y arrastre, con estructura hecha para el uso real de cada cliente.",
+    benefits: ["Diseño personalizado", "Estructura reforzada", "Trabajo sobre especificación"],
+    ideal: "Para carga, trabajo diario y necesidades especiales de transporte.",
     wa: WHATSAPP_MESSAGES.trailers,
+    img: serviceFabrication.url,
   },
   {
     icon: Settings,
     title: "Instalación de tirones",
-    desc: "Servicio profesional de instalación con equipo especializado. Montamos el tirón asegurándonos de que quede firme y alineado.",
-    benefits: ["Instalación el mismo día", "Alineación precisa", "Prueba de resistencia incluida"],
-    ideal: "Para quienes ya tienen su tirón o compran uno con nosotros.",
+    desc: "Servicio profesional de instalación y alineación para que tu tirón quede firme, recto y listo para trabajar.",
+    benefits: ["Instalación el mismo día", "Alineación precisa", "Entrega funcional"],
+    ideal: "Para quienes buscan una instalación rápida y bien hecha.",
     wa: WHATSAPP_MESSAGES.installation,
+    img: serviceInstallation.url,
   },
   {
     icon: Hammer,
     title: "Fabricación metálica a medida",
-    desc: "Diseñamos y fabricamos piezas metálicas personalizadas: estructuras, soportes, bases, marcos y cualquier pieza en acero o hierro.",
-    benefits: ["Diseño según especificaciones", "Corte y soldadura de precisión", "Acabados de calidad"],
-    ideal: "Negocios, talleres, constructoras o particulares que requieren piezas únicas.",
+    desc: "Diseñamos piezas, soportes y estructuras con materiales resistentes y acabados hechos para durar.",
+    benefits: ["Materiales de alta resistencia", "Medidas personalizadas", "Acabados sólidos"],
+    ideal: "Negocios y particulares que necesitan una pieza hecha específicamente para su proyecto.",
     wa: WHATSAPP_MESSAGES.fabrication,
+    img: serviceMaterials.url,
   },
   {
     icon: Shield,
     title: "Soldadura especializada",
-    desc: "Servicio de soldadura MIG y TIG para reparaciones, refuerzos estructurales y uniones de alta resistencia.",
-    benefits: ["Soldadura MIG y TIG", "Reparación de estructuras", "Refuerzos y adaptaciones"],
-    ideal: "Vehículos, maquinaria, estructuras metálicas que necesitan reparación o refuerzo.",
+    desc: "Realizamos uniones y refuerzos para piezas de arrastre y estructuras que requieren resistencia y precisión.",
+    benefits: ["Refuerzos estructurales", "Acabado limpio", "Durabilidad para uso real"],
+    ideal: "Para reparaciones y trabajos donde la resistencia no se negocia.",
     wa: WHATSAPP_MESSAGES.welding,
+    img: serviceQuality.url,
   },
   {
     icon: Link2,
     title: "Accesorios de arrastre",
-    desc: "Bolas de arrastre, conectores eléctricos, extensiones, cadenas de seguridad y todo para tu sistema de remolque.",
-    benefits: ["Variedad de medidas", "Compatibilidad garantizada", "Instalación incluida"],
-    ideal: "Complementa tu tirón con los accesorios correctos para un sistema completo.",
+    desc: "Integramos receptores, bolas y componentes compatibles para completar tu sistema de arrastre.",
+    benefits: ["Receptor de 2 pulgadas", "Compatibilidad funcional", "Listo para instalar"],
+    ideal: "Complementa tu tirón con la configuración correcta para tu vehículo.",
     wa: WHATSAPP_MESSAGES.accessories,
+    img: serviceReceiver.url,
   },
   {
     icon: Cog,
     title: "Adaptaciones para vehículos",
-    desc: "Modificaciones y adaptaciones metálicas: defensas, portabicicletas, racks de carga, soportes para placa y más.",
-    benefits: ["Personalización total", "Funcionalidad y estética", "Resistencia comprobada"],
-    ideal: "Dueños de vehículos que buscan personalizar o agregar funcionalidad.",
+    desc: "Hacemos ajustes y adaptaciones según el uso de tu unidad, con atención directa durante todo el proceso.",
+    benefits: ["Atención personalizada", "Solución a medida", "Trabajo directo en taller"],
+    ideal: "Para dueños que necesitan resolver un requerimiento específico en su vehículo.",
     wa: WHATSAPP_MESSAGES.adaptations,
+    img: serviceAttention.url,
   },
 ];
 
@@ -77,7 +90,7 @@ const Servicios = () => (
         <SectionHeading
           tag="Nuestros servicios"
           title="Todo lo que necesitas en un solo taller"
-          description="Desde la fabricación del tirón hasta remolques completos. Atención personalizada y calidad garantizada."
+          description="Ahora con fotos reales de trabajos hechos en el taller para que veas nuestro trabajo tal como sale." 
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((s, i) => (
@@ -88,27 +101,32 @@ const Servicios = () => (
               viewport={{ once: true }}
               custom={i}
               variants={fadeUp}
-              className="bg-gradient-card rounded-lg border border-border p-8 hover:border-glow transition-colors"
+              className="bg-gradient-card rounded-lg border border-border overflow-hidden hover:border-glow transition-colors"
             >
-              <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-5">
-                <s.icon className="w-6 h-6 text-primary" />
+              <div className="aspect-[16/10] overflow-hidden border-b border-border/70">
+                <img src={s.img} alt={s.title} loading="lazy" className="w-full h-full object-cover" />
               </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-3">{s.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
-              <ul className="space-y-2 mb-4">
-                {s.benefits.map((b) => (
-                  <li key={b} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-xs text-steel-light italic mb-5">{s.ideal}</p>
-              <a href={whatsappLink(s.wa)} target="_blank" rel="noopener noreferrer">
-                <Button size="sm" className="bg-gradient-accent font-display tracking-wider">
-                  <Phone className="w-4 h-4 mr-1" /> Cotizar
-                </Button>
-              </a>
+              <div className="p-8">
+                <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-5">
+                  <s.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-semibold text-foreground mb-3">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
+                <ul className="space-y-2 mb-4">
+                  {s.benefits.map((b) => (
+                    <li key={b} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs text-steel-light italic mb-5">{s.ideal}</p>
+                <a href={whatsappLink(s.wa)} target="_blank" rel="noopener noreferrer">
+                  <Button size="sm" className="bg-gradient-accent font-display tracking-wider">
+                    <Phone className="w-4 h-4 mr-1" /> Cotizar
+                  </Button>
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>

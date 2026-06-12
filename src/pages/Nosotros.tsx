@@ -2,7 +2,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/section-heading";
 import { Shield, Users, MapPin, Wrench, Clock, Award } from "lucide-react";
 import { motion } from "framer-motion";
-import projectFab from "@/assets/project-fabrication.jpg";
+import workshopImg from "@/assets/real-work/image-6.png.asset.json";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -13,21 +13,20 @@ const stats = [
   { value: "+10", label: "Años de experiencia" },
   { value: "+500", label: "Proyectos completados" },
   { value: "100%", label: "Trabajo personalizado" },
-  { value: "4.9", label: "Calificación de clientes" },
+  { value: "5.0", label: "Calificación en Google" },
 ];
 
 const pillars = [
   { icon: Wrench, title: "Trabajo artesanal", desc: "Cada pieza se fabrica a mano con la precisión que exige el trabajo automotriz." },
   { icon: Users, title: "Atención directa", desc: "Hablas directamente con quien fabrica tu pieza. Sin intermediarios." },
-  { icon: Shield, title: "Calidad garantizada", desc: "Usamos materiales de alta resistencia y procesos de soldadura certificados." },
-  { icon: MapPin, title: "Raíces locales", desc: "Somos parte de la comunidad de Allende. Conocemos las necesidades de la zona." },
-  { icon: Clock, title: "Disponibilidad", desc: "Horarios amplios y respuesta rápida para que no pierdas tiempo." },
-  { icon: Award, title: "Experiencia comprobada", desc: "Más de una década trabajando con vehículos de todo tipo." },
+  { icon: Shield, title: "Calidad garantizada", desc: "Usamos materiales de alta resistencia y procesos de soldadura pensados para durar." },
+  { icon: MapPin, title: "Ubicación real", desc: "Estamos en Carr Nacional 513, Valle de Los Naranjos, Allende, Nuevo León." },
+  { icon: Clock, title: "Respuesta rápida", desc: "En Google aparecemos con atención 24 horas, pero te atendemos mejor con previa cita." },
+  { icon: Award, title: "5.0 en Google", desc: "Nuestra ficha actual muestra calificación perfecta y 16 reseñas de clientes." },
 ];
 
 const Nosotros = () => (
   <Layout>
-    {/* Story */}
     <section className="py-16 md:py-24">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -35,24 +34,23 @@ const Nosotros = () => (
             <SectionHeading tag="Sobre nosotros" title="Un taller con historia y compromiso" align="left" />
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                <strong className="text-foreground">Tirones Allende</strong> nació de la pasión por el trabajo en metal y la mecánica automotriz. Ubicados sobre la Carretera Nacional en Allende, Nuevo León, hemos construido nuestra reputación pieza por pieza — literalmente.
+                <strong className="text-foreground">Tirones Allende</strong> trabaja desde Allende, Nuevo León, fabricando e instalando tirones de arrastre con enfoque en ajuste real, resistencia y atención directa.
               </p>
               <p>
-                Cada tirón de arrastre que fabricamos se diseña según las dimensiones y necesidades específicas del vehículo. No usamos moldes genéricos ni soluciones improvisadas. Aquí cada trabajo se hace con la medida exacta, la soldadura correcta y el acabado que tu vehículo merece.
+                Cada tirón se adapta al vehículo que llega al taller. No trabajamos con soluciones genéricas cuando el proyecto necesita una medida exacta, una alineación correcta y un acabado bien resuelto.
               </p>
               <p>
-                Nos especializamos en fabricación metálica, soldadura de alta resistencia, instalación profesional de tirones y todo tipo de adaptaciones vehiculares. Atendemos desde dueños de pickups que necesitan remolcar su trailer hasta negocios que requieren soluciones de fabricación industrial.
+                Con las fotos reales del taller ahora visibles en el sitio, mostramos mejor el tipo de trabajos que realizamos todos los días: tirones personalizados, instalaciones, adaptaciones y fabricación metálica aplicada al uso real del cliente.
               </p>
             </div>
           </div>
           <div className="rounded-lg overflow-hidden border border-border shadow-card">
-            <img src={projectFab} alt="Taller Tirones Allende" loading="lazy" className="w-full h-full object-cover" />
+            <img src={workshopImg.url} alt="Trabajo real en el taller Tirones Allende" loading="lazy" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
     </section>
 
-    {/* Stats */}
     <section className="py-12 bg-graphite">
       <div className="container">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -74,7 +72,6 @@ const Nosotros = () => (
       </div>
     </section>
 
-    {/* Pillars */}
     <section className="py-16 md:py-24">
       <div className="container">
         <SectionHeading tag="Nuestros valores" title="Lo que nos distingue" />
