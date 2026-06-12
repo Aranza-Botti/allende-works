@@ -38,9 +38,9 @@ const GoogleMapSection = () => (
               <MapPin className="w-5 h-5 text-primary" />
             </div>
             <h3 className="font-display text-base font-semibold text-foreground mb-2">Tirones Allende</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">Carr Nacional 513</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">Carr. Nacional 513</p>
             <p className="text-sm text-muted-foreground leading-relaxed">Valle de Los Naranjos, 67350</p>
-            <p className="text-sm text-muted-foreground">Cdad. de Allende, N.L., México</p>
+            <p className="text-sm text-muted-foreground">Allende, N.L.</p>
             <div className="mt-4 space-y-2 text-sm text-muted-foreground">
               <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> {PHONE_NUMBER}</p>
               <p className="text-primary font-medium">5.0 ★ en Google · 16 reseñas</p>
